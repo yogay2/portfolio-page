@@ -1,177 +1,269 @@
 
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="Persönliches Portfolio von Yoarjun. Projekte, Fähigkeiten und Erfahrungen im Bereich Digital Business & AI.">
-
+    <meta name="description" content="Portfolio von Yoarjun, Student Digital Business & AI an der Berner Fachhochschule.">
     <title>Yoarjun | Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
-    <!-- HEADER -->
-    <header>
-        <div>
-            <a href="#home">YOARJUN.</a>
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="#home" class="logo">YOARJUN<span>.</span></a>
 
             <nav aria-label="Hauptnavigation">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                <ul class="nav-links">
+                    <li><a href="#home">Startseite</a></li>
+                    <li><a href="#about">Über mich</a></li>
+                    <li><a href="#skills">Fähigkeiten</a></li>
+                    <li><a href="#projects">Projekte</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
     <main>
-
-        <!-- HERO -->
-        <section id="home">
-            <div>
-                <p>Digital Business & AI Student</p>
+        <section id="home" class="hero">
+            <div class="container hero-content">
+                <p class="eyebrow">STUDENT DIGITAL BUSINESS & AI</p>
 
                 <h1>
-                    Building digital experiences.
+                    Digitale Lösungen<br>
+                    <span>gestalten.</span>
                 </h1>
 
-                <p>
-                    Hi, I'm Yoarjun. I'm studying Digital Business
-                    & AI at Bern University of Applied Sciences.
-                    I enjoy working with technology, databases
-                    and digital solutions.
+                <p class="hero-description">
+                    Hallo, ich bin Yoarjun und studiere Digital Business & AI
+                    an der Berner Fachhochschule. Ich interessiere mich für
+                    Webentwicklung, Datenbanken und innovative digitale Lösungen.
                 </p>
 
-                <a href="#projects">Explore my work</a>
-                <a href="#about">More about me</a>
+                <div class="hero-actions">
+                    <a href="#projects" class="button button-primary">
+                        Projekte entdecken <span aria-hidden="true">↗</span>
+                    </a>
+                    <a href="#about" class="button button-outline">
+                        Mehr über mich
+                    </a>
+                </div>
+
+                <div class="hero-meta">
+                    <span>STANDORT: SCHWEIZ</span>
+                    <span>MEHR ENTDECKEN ↓</span>
+                </div>
             </div>
         </section>
 
-        <!-- ABOUT -->
-        <section id="about">
-            <div>
-                <p>01 / ABOUT</p>
-                <h2>A little about me.</h2>
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">01 / ÜBER MICH</p>
+                    <h2>Wer ich bin<span class="dot">.</span></h2>
+                </div>
 
-                <p>
-                    I'm a Digital Business & AI student at
-                    Bern University of Applied Sciences
-                    with a background in IT.
-                </p>
+                <div class="about-layout">
+                    <div class="about-text">
+                        <p>
+                            Ich studiere Digital Business & AI an der
+                            Berner Fachhochschule und bringe bereits
+                            technische Grundlagen aus meiner Ausbildung
+                            in der Informatik mit.
+                        </p>
 
-                <p>
-                    After completing my apprenticeship in
-                    computer science, I decided to expand
-                    my knowledge in business and technology.
-                </p>
+                        <p>
+                            Nach meiner Informatiklehre habe ich mich
+                            entschieden, mein Wissen in den Bereichen
+                            Wirtschaft, Digitalisierung und künstliche
+                            Intelligenz weiterzuentwickeln.
+                        </p>
 
-                <p>
-                    I'm particularly interested in databases,
-                    SQL and web development.
-                </p>
+                        <p>
+                            Besonders interessieren mich Datenbanken,
+                            SQL und die Entwicklung digitaler Anwendungen.
+                            Dabei gefällt es mir, technische Probleme
+                            zu analysieren und praktische Lösungen
+                            zu entwickeln.
+                        </p>
+                    </div>
+
+                    <div class="about-info">
+                        <div class="info-item">
+                            <span>AUSBILDUNG</span>
+                            <p>Berner Fachhochschule (BFH)</p>
+                        </div>
+
+                        <div class="info-item">
+                            <span>STUDIENGANG</span>
+                            <p>Digital Business & AI</p>
+                        </div>
+
+                        <div class="info-item">
+                            <span>VORBILDUNG</span>
+                            <p>Informatiklehre</p>
+                        </div>
+
+                        <div class="info-item">
+                            <span>INTERESSEN</span>
+                            <p>Webentwicklung, Datenbanken und KI</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- SKILLS -->
-        <section id="skills">
-            <div>
-                <p>02 / EXPERTISE</p>
-                <h2>My tech stack.</h2>
+        <section id="skills" class="section section-alt">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">02 / FÄHIGKEITEN</p>
+                    <h2>Meine Technologien<span class="dot">.</span></h2>
+                    <p class="section-description">
+                        Technologien und Werkzeuge, mit denen ich während
+                        meiner Ausbildung und meines Studiums gearbeitet habe.
+                    </p>
+                </div>
 
-                <div>
-                    <article>
+                <div class="skills-grid">
+                    <article class="skill-card">
+                        <span class="card-index">01</span>
                         <h3>Frontend</h3>
-                        <p>HTML, CSS, JavaScript, Vue.js</p>
+                        <p>HTML · CSS · JavaScript · Vue.js</p>
                     </article>
 
-                    <article>
-                        <h3>Backend</h3>
-                        <p>Strapi, REST APIs</p>
+                    <article class="skill-card">
+                        <span class="card-index">02</span>
+                        <h3>Backend & APIs</h3>
+                        <p>Strapi · REST APIs</p>
                     </article>
 
-                    <article>
-                        <h3>Databases</h3>
-                        <p>SQL, Relational Databases</p>
+                    <article class="skill-card">
+                        <span class="card-index">03</span>
+                        <h3>Datenbanken</h3>
+                        <p>SQL · Relationale Datenbanken</p>
                     </article>
 
-                    <article>
-                        <h3>Tools</h3>
-                        <p>Git, GitHub, VS Code, Bruno</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROJECTS -->
-        <section id="projects">
-            <div>
-                <p>03 / SELECTED WORK</p>
-                <h2>Featured projects.</h2>
-
-                <div>
-                    <article>
-                        <h3>Nexa</h3>
-                        <p>
-                            A knowledge-sharing platform
-                            for students.
-                        </p>
-                        <p>Vue.js · Strapi · REST API</p>
-                    </article>
-
-                    <article>
-                        <h3>Lost & Found</h3>
-                        <p>
-                            A digital concept for managing
-                            and returning lost items.
-                        </p>
-                        <p>Process Design · Concept</p>
-                    </article>
-
-                    <article>
-                        <h3>Database Projects</h3>
-                        <p>
-                            Working with relational databases,
-                            SQL queries and structured data.
-                        </p>
-                        <p>SQL · Data</p>
+                    <article class="skill-card">
+                        <span class="card-index">04</span>
+                        <h3>Entwicklungswerkzeuge</h3>
+                        <p>Git · GitHub · Visual Studio Code · Bruno</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- CONTACT -->
-        <section id="contact">
-            <div>
-                <p>04 / CONTACT</p>
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">03 / PROJEKTE</p>
+                    <h2>Ausgewählte Projekte<span class="dot">.</span></h2>
+                    <p class="section-description">
+                        Ein Einblick in Projekte, an denen ich während
+                        meines Studiums gearbeitet habe.
+                    </p>
+                </div>
 
-                <h2>Let's build something great.</h2>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-preview">
+                            <span class="preview-title">NEXA</span>
+                            <span class="preview-index">01 / 03</span>
+                        </div>
 
-                <p>
-                    Interested in connecting or learning
-                    more about my projects?
-                </p>
+                        <div class="project-body">
+                            <h3>Nexa</h3>
+                            <p>
+                                Eine Plattform zum Wissensaustausch zwischen
+                                Studierenden. Nutzer können Lernangebote
+                                erstellen und Unterstützung in verschiedenen
+                                Fachbereichen finden.
+                            </p>
 
-                <p>
-                    Contact information coming soon.
-                </p>
+                            <div class="tags">
+                                <span>Vue.js</span>
+                                <span>Strapi</span>
+                                <span>REST API</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-preview preview-two">
+                            <span class="preview-title">LOST / FOUND</span>
+                            <span class="preview-index">02 / 03</span>
+                        </div>
+
+                        <div class="project-body">
+                            <h3>Lost & Found</h3>
+                            <p>
+                                Ein Konzept zur digitalen Verwaltung von
+                                Fundgegenständen. Ziel war es, die Erfassung,
+                                Zuordnung und Rückgabe verlorener Gegenstände
+                                effizienter zu gestalten.
+                            </p>
+
+                            <div class="tags">
+                                <span>Prozessanalyse</span>
+                                <span>Konzeption</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-preview preview-three">
+                            <span class="preview-title">SQL / DATA</span>
+                            <span class="preview-index">03 / 03</span>
+                        </div>
+
+                        <div class="project-body">
+                            <h3>Datenbankprojekte</h3>
+                            <p>
+                                Übungen und Projekte mit relationalen
+                                Datenbanken. Dazu gehören SQL-Abfragen,
+                                das Verknüpfen von Tabellen sowie das
+                                Auswerten und Bearbeiten strukturierter Daten.
+                            </p>
+
+                            <div class="tags">
+                                <span>SQL</span>
+                                <span>Datenanalyse</span>
+                                <span>Datenbanken</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </div>
         </section>
 
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <p class="eyebrow">04 / KONTAKT</p>
+
+                <h2>
+                    Gemeinsam<br>
+                    <span>Neues schaffen.</span>
+                </h2>
+
+                <p>
+                    Du möchtest mehr über meine Projekte erfahren
+                    oder dich mit mir austauschen? Ich freue mich
+                    über neue Kontakte und interessante Gespräche.
+                </p>
+
+                <p class="contact-placeholder">
+                    Kontaktmöglichkeiten werden ergänzt.
+                </p>
+            </div>
+        </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2026 Yoarjun</p>
-        <a href="#home">Back to top</a>
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>© 2026 Yoarjun</p>
+            <p>Entwickelt mit HTML, CSS und JavaScript</p>
+            <a href="#home">Nach oben ↑</a>
+        </div>
     </footer>
-
 </body>
 </html>
