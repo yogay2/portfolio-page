@@ -7,13 +7,23 @@
     <meta name="description" content="Portfolio von Yoarjun, Student Digital Business & AI an der Berner Fachhochschule.">
     <title>Yoarjun | Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
 </head>
 <body>
     <header class="site-header">
         <div class="container nav-container">
             <a href="#home" class="logo">YOARJUN<span>.</span></a>
 
-            <nav aria-label="Hauptnavigation">
+            <button class="menu-toggle" type="button"
+                    aria-label="Menü öffnen"
+                    aria-expanded="false"
+                    aria-controls="main-navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav id="main-navigation" class="main-navigation" aria-label="Hauptnavigation">
                 <ul class="nav-links">
                     <li><a href="#home">Startseite</a></li>
                     <li><a href="#about">Über mich</a></li>
