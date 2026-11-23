@@ -14,10 +14,7 @@
         <div class="container nav-container">
             <a href="#home" class="logo">YOARJUN<span>.</span></a>
 
-            <button class="menu-toggle" type="button"
-                    aria-label="Menü öffnen"
-                    aria-expanded="false"
-                    aria-controls="main-navigation">
+            <button class="menu-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-navigation">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -174,74 +171,38 @@
                     </p>
                 </div>
 
-                <div class="projects-grid">
-                    <article class="project-card">
-                        <div class="project-preview">
-                            <span class="preview-title">NEXA</span>
-                            <span class="preview-index">01 / 03</span>
-                        </div>
+                <div class="project-toolbar">
+                    <div class="project-filters" role="group" aria-label="Projekte nach Kategorie filtern">
+                        <button class="filter-button active" type="button" data-filter="alle" aria-pressed="true">
+                            Alle
+                        </button>
+                        <button class="filter-button" type="button" data-filter="webentwicklung" aria-pressed="false">
+                            Webentwicklung
+                        </button>
+                        <button class="filter-button" type="button" data-filter="datenbanken" aria-pressed="false">
+                            Datenbanken
+                        </button>
+                        <button class="filter-button" type="button" data-filter="konzeption" aria-pressed="false">
+                            Konzeption
+                        </button>
+                    </div>
 
-                        <div class="project-body">
-                            <h3>Nexa</h3>
-                            <p>
-                                Eine Plattform zum Wissensaustausch zwischen
-                                Studierenden. Nutzer können Lernangebote
-                                erstellen und Unterstützung in verschiedenen
-                                Fachbereichen finden.
-                            </p>
+                    <label class="search-field">
+                        <span class="visually-hidden">Projekte durchsuchen</span>
+                        <input id="project-search" type="search" placeholder="Projekt suchen ..." autocomplete="off">
+                    </label>
+                </div>
 
-                            <div class="tags">
-                                <span>Vue.js</span>
-                                <span>Strapi</span>
-                                <span>REST API</span>
-                            </div>
-                        </div>
-                    </article>
+                <p id="project-count" class="project-count" role="status" aria-live="polite"></p>
 
-                    <article class="project-card">
-                        <div class="project-preview preview-two">
-                            <span class="preview-title">LOST / FOUND</span>
-                            <span class="preview-index">02 / 03</span>
-                        </div>
+                <div id="projects-grid" class="projects-grid"></div>
 
-                        <div class="project-body">
-                            <h3>Lost & Found</h3>
-                            <p>
-                                Ein Konzept zur digitalen Verwaltung von
-                                Fundgegenständen. Ziel war es, die Erfassung,
-                                Zuordnung und Rückgabe verlorener Gegenstände
-                                effizienter zu gestalten.
-                            </p>
-
-                            <div class="tags">
-                                <span>Prozessanalyse</span>
-                                <span>Konzeption</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-preview preview-three">
-                            <span class="preview-title">SQL / DATA</span>
-                            <span class="preview-index">03 / 03</span>
-                        </div>
-
-                        <div class="project-body">
-                            <h3>Datenbankprojekte</h3>
-                            <p>
-                                Übungen und Projekte mit relationalen
-                                Datenbanken. Dazu gehören SQL-Abfragen,
-                                das Verknüpfen von Tabellen sowie das
-                                Auswerten und Bearbeiten strukturierter Daten.
-                            </p>
-
-                            <div class="tags">
-                                <span>SQL</span>
-                                <span>Datenanalyse</span>
-                                <span>Datenbanken</span>
-                            </div>
-                        </div>
-                    </article>
+                <div id="project-empty" class="project-empty" hidden>
+                    <h3>Keine Projekte gefunden.</h3>
+                    <p>Versuche einen anderen Suchbegriff oder wähle eine andere Kategorie.</p>
+                    <button id="reset-filters" class="button button-outline" type="button">
+                        Filter zurücksetzen
+                    </button>
                 </div>
             </div>
         </section>
