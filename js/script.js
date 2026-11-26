@@ -29,7 +29,12 @@ navigationLinks.forEach((link) => {
 
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
+        const wasOpen = navigation.classList.contains("is-open");
         closeMenu();
+
+        if (wasOpen) {
+            menuButton.focus();
+        }
     }
 });
 
@@ -43,7 +48,7 @@ document.addEventListener("click", (event) => {
 });
 
 window.addEventListener("resize", () => {
-    if (window.innerWidth > 700) {
+    if (window.innerWidth > 800) {
         closeMenu();
     }
 });
@@ -103,6 +108,7 @@ function createElement(tag, className, content) {
 
 function createProjectCard(project, index) {
     const card = createElement("article", "project-card");
+
     const preview = createElement(
         "div",
         `project-preview ${project.previewClass}`.trim()
@@ -128,8 +134,7 @@ function createProjectCard(project, index) {
     const tags = createElement("div", "tags");
 
     project.technologies.forEach((technology) => {
-        const tag = createElement("span", "", technology);
-        tags.appendChild(tag);
+        tags.appendChild(createElement("span", "", technology));
     });
 
     body.append(title, description, tags);
@@ -139,7 +144,9 @@ function createProjectCard(project, index) {
 }
 
 function getFilteredProjects() {
-    const searchTerm = projectSearch.value.trim().toLocaleLowerCase("de-CH");
+    const searchTerm = projectSearch.value
+        .trim()
+        .toLocaleLowerCase("de-CH");
 
     return projects.filter((project) => {
         const matchesCategory =
@@ -153,9 +160,7 @@ function getFilteredProjects() {
             ...project.technologies
         ].join(" ").toLocaleLowerCase("de-CH");
 
-        const matchesSearch = searchableText.includes(searchTerm);
-
-        return matchesCategory && matchesSearch;
+        return matchesCategory && searchableText.includes(searchTerm);
     });
 }
 
@@ -168,8 +173,9 @@ function renderProjects() {
             (item) => item.id === project.id
         );
 
-        const card = createProjectCard(project, originalIndex);
-        fragment.appendChild(card);
+        fragment.appendChild(
+            createProjectCard(project, originalIndex)
+        );
     });
 
     projectsGrid.replaceChildren(fragment);
@@ -212,3 +218,244 @@ resetFiltersButton.addEventListener("click", () => {
 });
 
 renderProjects();
+
+const githubUsername = "yogay2";
+const githubApi = "https://api.github.com";
+
+const githubName = document.querySelector("#github-name");
+const githubProfileUsername = document.querySelector("#github-username");
+const githubAvatar = document.querySelector("#github-avatar");
+const githubRepos = document.querySelector("#github-repos");
+const githubFollowers = document.querySelector("#github-followers");
+const githubFollowing = document.querySelector("#github-following");
+const githubRepositories = document.querySelector("#github-repositories");
+const githubStatus = document.querySelector("#github-status");
+const githubProfileStatus = document.querySelector("#github-profile-status");
+const githubRetry = document.querySelector("#github-retry");
+
+async function fetchGitHubData(url) {
+    const controller = new AbortController();
+
+    const timeout = setTimeout(() => {
+        controller.abort();
+    }, 10000);
+
+    try {
+        const response = await fetch(url, {
+            headers: {
+                Accept: "application/vnd.github+json"
+            },
+            signal: controller.signal
+        });
+
+        if (!response.ok) {
+            if (
+                response.status === 429 ||
+                (
+                    response.status === 403 &&
+                    response.headers.get("X-RateLimit-Remaining") === "0"
+                )
+            ) {
+                throw new Error(
+                    "Das GitHub-API-Limit wurde erreicht. Bitte später erneut versuchen."
+                );
+            }
+
+            throw new Error(
+                `GitHub API: HTTP ${response.status}`
+            );
+        }
+
+        return await response.json();
+    } finally {
+        clearTimeout(timeout);
+    }
+}
+
+function renderGitHubProfile(profile) {
+    githubName.textContent = profile.name || profile.login;
+    githubProfileUsername.textContent = `@${profile.login}`;
+    githubAvatar.src = profile.avatar_url;
+    githubAvatar.alt = `Profilbild von ${profile.login}`;
+
+    githubRepos.textContent = profile.public_repos;
+    githubFollowers.textContent = profile.followers;
+    githubFollowing.textContent = profile.following;
+
+    githubProfileStatus.textContent = "";
+}
+
+function createRepositoryCard(repository) {
+    const card = createElement(
+        "article",
+        "github-repository"
+    );
+
+    const title = createElement(
+        "h4",
+        "",
+        repository.name
+    );
+
+    const description = createElement(
+        "p",
+        "github-repository-description",
+        repository.description || "Keine Beschreibung vorhanden."
+    );
+
+    const details = createElement(
+        "div",
+        "github-repository-details"
+    );
+
+    const language = createElement(
+        "span",
+        "",
+        repository.language || "Nicht angegeben"
+    );
+
+    const stars = createElement(
+        "span",
+        "",
+        `★ ${repository.stargazers_count}`
+    );
+
+    const forks = createElement(
+        "span",
+        "",
+        `Forks: ${repository.forks_count}`
+    );
+
+    const updatedDate = new Date(
+        repository.updated_at
+    ).toLocaleDateString("de-CH");
+
+    const updated = createElement(
+        "span",
+        "",
+        `Aktualisiert: ${updatedDate}`
+    );
+
+    const link = createElement(
+        "a",
+        "github-repository-link",
+        "Repository ansehen ↗"
+    );
+
+    link.href = repository.html_url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+
+    details.append(language, stars, forks, updated);
+    card.append(title, description, details, link);
+
+    return card;
+}
+
+function renderGitHubRepositories(repositories) {
+    const fragment = document.createDocumentFragment();
+
+    const sortedRepositories = [...repositories].sort((a, b) => {
+        return new Date(b.updated_at) - new Date(a.updated_at);
+    });
+
+    sortedRepositories.forEach((repository) => {
+        fragment.appendChild(
+            createRepositoryCard(repository)
+        );
+    });
+
+    githubRepositories.replaceChildren(fragment);
+
+    const count = sortedRepositories.length;
+
+    if (count === 0) {
+        githubStatus.textContent =
+            "Keine öffentlichen Repositories gefunden.";
+    } else {
+        githubStatus.textContent =
+            count === 1
+                ? "1 Repository angezeigt"
+                : `${count} Repositories angezeigt`;
+    }
+}
+
+function getGitHubErrorMessage(error) {
+    if (error.name === "AbortError") {
+        return "Die Anfrage hat zu lange gedauert.";
+    }
+
+    if (error.message.includes("API-Limit")) {
+        return error.message;
+    }
+
+    return "Die GitHub-Daten konnten nicht geladen werden.";
+}
+
+async function loadGitHubData() {
+    githubRetry.hidden = true;
+    githubRetry.disabled = true;
+
+    githubProfileStatus.textContent =
+        "Profilinformationen werden geladen ...";
+
+    githubStatus.textContent =
+        "Repositories werden geladen ...";
+
+    githubRepositories.replaceChildren();
+
+    githubRepos.textContent = "–";
+    githubFollowers.textContent = "–";
+    githubFollowing.textContent = "–";
+
+    const profileUrl =
+        `${githubApi}/users/${githubUsername}`;
+
+    const repositoriesUrl =
+        `${githubApi}/users/${githubUsername}/repos?sort=updated&per_page=100`;
+
+    const [profileResult, repositoriesResult] =
+        await Promise.allSettled([
+            fetchGitHubData(profileUrl),
+            fetchGitHubData(repositoriesUrl)
+        ]);
+
+    let hasError = false;
+
+    if (profileResult.status === "fulfilled") {
+        renderGitHubProfile(profileResult.value);
+    } else {
+        githubProfileStatus.textContent =
+            getGitHubErrorMessage(profileResult.reason);
+
+        hasError = true;
+
+        console.error(
+            "GitHub-Profil:",
+            profileResult.reason
+        );
+    }
+
+    if (repositoriesResult.status === "fulfilled") {
+        renderGitHubRepositories(
+            repositoriesResult.value
+        );
+    } else {
+        githubStatus.textContent =
+            getGitHubErrorMessage(repositoriesResult.reason);
+
+        hasError = true;
+
+        console.error(
+            "GitHub-Repositories:",
+            repositoriesResult.reason
+        );
+    }
+
+    githubRetry.hidden = !hasError;
+    githubRetry.disabled = false;
+}
+
+githubRetry.addEventListener("click", loadGitHubData);
+
+loadGitHubData();
